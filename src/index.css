@@ -1,0 +1,35 @@
+.main-container {
+  min-height: 100vh;
+  padding: 10px;
+  background-color: lightcyan;
+}
+
+.common-stats {
+  padding: 10px;
+}
+
+.per-cpu-stats {
+  padding-top: 10px;
+}
+
+.per-cpu-col {
+  margin-bottom: 10px;
+}
+
+.card {
+  min-height: 100%;
+}
+
+.card-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.card-title {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CPU MONITOR</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="container-fluid main-container d-flex flex-column">
+      <!-- common stats -->
+      <div class="container-fluid common-stats">
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Physical cores:</h5>
+                <p class="stats" id="physical-cores">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Logical cores:</h5>
+                <p class="stats" id="logical-cores">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Maximum frequency:</h5>
+                <p class="stats" id="max-freq">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Minimum frequency:</h5>
+                <p class="stats"  id="min-freq">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Total usage:</h5>
+                <p class="stats" id="total-usage">0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- stats per CPU -->
+      <div class=" container-fluid per-cpu-stats flex-grow-1 d-flex">
+        <div class="row flex-grow-1">
+          <!-- template for cpu card, will be geterated by JS -->
+          <!-- <div class="col-6 per-cpu-col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Physical cores:</h5>
+                <p class="stats">4</p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+  <script src="./renderer.js"></script>
+</html>
