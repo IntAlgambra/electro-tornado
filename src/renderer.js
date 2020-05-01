@@ -1,6 +1,14 @@
 class App {
   constructor() {
-    this.data = null;
+    // dummy data to render something while waiting for server response
+    this.data = {
+      physical: 0,
+      logical: 0,
+      maxfreq: 0,
+      minfreq: 0,
+      total: 0,
+      perCpu: [0, 0, 0, 0],
+    };
     this.physicalCoresElement = document.querySelector('#physical-cores');
     this.logicalCoresElement = document.querySelector('#logical-cores');
     this.maxFrequencyElement = document.querySelector('#max-freq');
@@ -8,7 +16,7 @@ class App {
     this.totalUsageElement = document.querySelector('#total-usage');
     this.perCpuRow = document.querySelector('.per-cpu-stats').querySelector('.row');
     this.cpuCards = {};
-    this.renderData();
+    this.renderDataFirstTime();
     setInterval(() => {
       this.reRenderData();
     }, 100);
@@ -26,17 +34,13 @@ class App {
     return html;
   }
 
-  renderCommonStats() {
+  async renderDataFirstTime() {
+    await this.getData();
     this.physicalCoresElement.textContent = this.data.physical;
     this.logicalCoresElement.textContent = this.data.logical;
     this.maxFrequencyElement.textContent = `${this.data.maxfreq} Mhq`;
     this.minFrequencyElement.textContent = `${this.data.minfreq} Mhq`;
     this.totalUsageElement.textContent = `${this.data.total} %`;
-  }
-
-  async renderData() {
-    await this.getData();
-    this.renderCommonStats();
     this.perCpuRow.innerHTML = '';
     this.data.percpu.forEach((cpuLoad, cpuIndex) => {
       const html = App.renderCpuCard(cpuIndex + 1, cpuLoad);
@@ -50,7 +54,7 @@ class App {
 
   async reRenderData() {
     await this.getData();
-    this.renderCommonStats();
+    this.totalUsageElement.textContent = `${this.data.total} %`;
     this.data.percpu.forEach((cpuLoad, cpuIndex) => {
       this.cpuCards[cpuIndex + 1].querySelector('.card-title').textContent = `Core №${cpuIndex}`;
       this.cpuCards[cpuIndex + 1].querySelector('.stats').textContent = `${cpuLoad}%`;

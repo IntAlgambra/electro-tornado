@@ -5,9 +5,9 @@
   "description": "electron.js + python tornado test app",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "electron-forge start -- development",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "make": "src\\backend\\venv\\Scripts\\pyinstaller src/backend/server.py --distpath src/backend/dist -y && electron-forge make",
     "publish": "electron-forge publish",
     "prepare": "cd src/backend && virtualenv venv && venv\\Scripts\\pip install -r && pyinstaller server.py"
   },
